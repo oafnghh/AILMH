@@ -89,6 +89,9 @@ function takeCommand(message) {
     else if (message.includes("Tình yêu") || message.includes("yêu") || message.includes("crush")) {
         speak("Tôi nghĩ bạn nên chia tay nhé bởi vì Minh Hoàng cũng chưa có người yêu");
     }
+    else if (message.includes("Minh Hoàng")) {
+        speak("Tình yêu là duyên số, nhưng nếu bạn thích Minh Hoàng thì cứ mạnh dạn lên! Nếu không, hãy nhớ rằng thế giới này vẫn còn rất nhiều Minh Hoàng khác.");
+    }
     else {
         window.open(`https://www.google.com/search?q=${message.replace(/\s/g, "+")}`, "_blank");
         speak("Tôi chưa hiểu yêu cầu của bạn. Tôi đã tìm trên Google giúp bạn!");
