@@ -1,0 +1,54 @@
+@keyframes glitch {
+    0% { text-shadow: 2px 2px red, -2px -2px blue; }
+    50% { text-shadow: -2px -2px red, 2px 2px blue; }
+    100% { text-shadow: 2px 2px red, -2px -2px blue; }
+}
+
+body {
+    background: #0d0d0d;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+.glitch {
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    animation: glitch 0.8s infinite alternate;
+}
+
+.ai-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.btn-glow {
+    background: linear-gradient(45deg, #ff0000, #ff7300, #ff0000);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+    transition: 0.3s;
+}
+
+.btn-glow:hover {
+    box-shadow: 0 0 30px rgba(255, 0, 0, 1);
+}
