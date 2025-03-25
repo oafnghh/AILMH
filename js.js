@@ -1,5 +1,7 @@
 const btn = document.querySelector('.talk')
 const content = document.querySelector('.content')
+const audio = new Audio("nhac.mp4");
+const audio2 = new Audio("nhac2.mp4");
 function openPopup() {
     document.getElementById("popup").style.display = "block";
 }
@@ -125,8 +127,27 @@ function takeCommand(message) {
     else if (message.includes("mở messenger")) {  
         window.open("https://www.messenger.com/", "_blank");  
         speak("Đang mở Messenger!");  
-    }  
-    
+    } 
+    else if (message.includes("sự nghiệp chướng")) {
+        audio.pause();
+        audio2.play();
+        speak("Đang phát nhạc!");
+    }
+    else if (message.includes("tràn bộ nhớ")) {
+        audio2.pause();
+        audio.play();
+        speak("Đang phát nhạc!");
+    }
+    else if (message.includes("bật nhạc") || message.includes("phát nhạc") || message.includes("chơi nhạc")) {
+        audio.play();
+        audio2.pause();
+        speak("Đang phát nhạc!");
+    } 
+    else if (message.includes("tắt nhạc") || message.includes("dừng nhạc")) {
+        audio.pause();
+        audio2.pause();
+        speak("Đã dừng nhạc!");
+    } 
     else if (message.includes("mở gmail")) {  
         window.open("https://mail.google.com/", "_blank");  
         speak("Đang mở Gmail!");  
@@ -140,7 +161,7 @@ function takeCommand(message) {
     }       
     else {
         window.open(`https://www.google.com/search?q=${message.replace(/\s/g, "+")}`, "_blank");
-        speak("Tôi chưa hiểu yêu cầu của bạn. Tôi đã tìm trên Google giúp bạn!");
+        speak("Thèn hoàng nó chưa cập nhật cho tôi. Để tôi tìm trên Google giúp bạn!");
     }
     function convertToNumber(word) {
         const numbers = {
@@ -148,5 +169,23 @@ function takeCommand(message) {
             "sáu": 6, "bảy": 7, "tám": 8, "chín": 9, "mười": 10
         };
         return numbers[word] || parseInt(word);
+    }
+}
+function searchFunction() {
+    var query = document.getElementById("searchInput").value.trim();
+    if (query !== "") {
+        window.open("https://www.google.com/search?q=" + encodeURIComponent(query), "_blank");
+        speak("Đây là kết quả tìm kiếm cho " + query);
+    } else {
+        speak("Vui lòng nhập nội dung tìm kiếm!");
+    }
+}
+function playOrPauseMusic(audio) {
+    if (!audio.paused) {
+        audio.pause();
+        speak("Đã dừng nhạc!");
+    } else {
+        audio.play();
+        speak("Đang phát nhạc!");
     }
 }

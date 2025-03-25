@@ -24,7 +24,6 @@ body {
     font-size: 3rem;
     font-weight: bold;
     text-transform: uppercase;
-    position: relative;
     animation: glitch 0.8s infinite alternate;
 }
 
@@ -36,6 +35,15 @@ body {
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
     display: inline-block;
     margin-top: 20px;
+    width: 400px;
+}
+
+.content {
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    font-size: 1.1rem;
 }
 
 .btn-glow {
@@ -53,6 +61,21 @@ body {
 .btn-glow:hover {
     box-shadow: 0 0 30px rgba(255, 0, 0, 1);
 }
+
+.btn-update {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(45deg, #00bfff, #0073ff);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 183, 255, 0.8);
+}
+
 .popup {
     display: none;
     position: fixed;
@@ -79,9 +102,23 @@ body {
 .popup ul li {
     padding: 5px;
 }
+.hidden-checkbox {
+    display: none;
+}
+.song-list {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 1s ease, opacity 1s ease;
+}
 
-.btn-update, .btn-close {
-    background: linear-gradient(45deg, #00bfff, #0073ff);
+.hidden-checkbox:checked + .song-list {
+    max-height: 500px; 
+    opacity: 1;
+}
+
+.btn-close {
+    background: red;
     color: white;
     border: none;
     padding: 10px;
@@ -91,6 +128,25 @@ body {
     border-radius: 5px;
 }
 
-.btn-close {
-    background: red;
+.search-container {
+    margin-top: 20px;
+}
+
+#searchInput {
+    padding: 10px;
+    width: 250px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.btn-search {
+    background: linear-gradient(45deg, #00ffcc, #0066ff);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 5px;
 }
