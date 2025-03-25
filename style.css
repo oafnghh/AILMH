@@ -5,7 +5,6 @@
 }
 
 body {
-    background: #0d0d0d;
     color: white;
     font-family: Arial, sans-serif;
     display: flex;
@@ -13,6 +12,8 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    background: url('https://mir-s3-cdn-cf.behance.net/project_modules/fs/9bc27292880429.5e569ff84e4d0.gif') no-repeat center center fixed;
+    background-size: cover;
 }
 
 .container {
@@ -51,4 +52,45 @@ body {
 
 .btn-glow:hover {
     box-shadow: 0 0 30px rgba(255, 0, 0, 1);
+}
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    color: black;
+}
+
+.popup ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.popup ul li {
+    padding: 5px;
+}
+
+.btn-update, .btn-close {
+    background: linear-gradient(45deg, #00bfff, #0073ff);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.btn-close {
+    background: red;
 }

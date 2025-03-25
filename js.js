@@ -1,6 +1,11 @@
 const btn = document.querySelector('.talk')
 const content = document.querySelector('.content')
-
+function openPopup() {
+    document.getElementById("popup").style.display = "block";
+}
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
 
 function speak(text){
     const text_speak = new SpeechSynthesisUtterance(text);
@@ -50,6 +55,26 @@ btn.addEventListener('click', ()=>{
 })
 
 function takeCommand(message) {
+    const mathExpression = message.match(/(\d+|\b[một|hai|ba|bốn|năm|sáu|bảy|tám|chín|mười]\b)\s*(cộng|trừ|nhân|chia|\+|\-|\*|\/)\s*(\d+|\b[một|hai|ba|bốn|năm|sáu|bảy|tám|chín|mười]\b)/i);
+
+    if (mathExpression) {
+        const num1 = convertToNumber(mathExpression[1]);
+        const operator = mathExpression[2];
+        const num2 = convertToNumber(mathExpression[3]);
+        let result;
+
+        switch (operator) {
+            case "cộng": case "+": result = num1 + num2; break;
+            case "trừ": case "-": result = num1 - num2; break;
+            case "nhân": case "*": result = num1 * num2; break;
+            case "chia": case "/": 
+                result = num2 !== 0 ? (num1 / num2).toFixed(2) : "không thể chia cho 0"; 
+                break;
+        }
+
+        speak(`${num1} ${operator} ${num2} bằng ${result}`);
+        return;
+    }
     if (message.includes('chào') || message.includes('hello') || message.includes('xin chào')) {
         speak("Xin chào! Tôi có thể giúp gì cho bạn?");
     } 
@@ -92,10 +117,36 @@ function takeCommand(message) {
     else if (message.includes("Minh Hoàng")) {
         speak("Tình yêu là duyên số, nhưng nếu bạn thích Minh Hoàng thì cứ mạnh dạn lên! Nếu không, hãy nhớ rằng thế giới này vẫn còn rất nhiều Minh Hoàng khác.");
     }
+    else if (message.includes("mở zalo")) {  
+        window.open("https://chat.zalo.me/", "_blank");  
+        speak("Đang mở Zalo!");  
+    }  
+    
+    else if (message.includes("mở messenger")) {  
+        window.open("https://www.messenger.com/", "_blank");  
+        speak("Đang mở Messenger!");  
+    }  
+    
+    else if (message.includes("mở gmail")) {  
+        window.open("https://mail.google.com/", "_blank");  
+        speak("Đang mở Gmail!");  
+    }  
+    else if (message.includes("kể chuyện") || message.includes("nói một câu chuyện")) {  
+        speak("Có một con gà đi qua đường. Bạn có đoán được tại sao không? Vì nó muốn sang đường đó! Haha!");  
+    }
+    else if (message.includes("thời tiết")) {  
+        window.open("https://www.google.com/search?q=thời+tiết+hôm+nay", "_blank");  
+        speak("Đây là dự báo thời tiết hôm nay.");  
+    }       
     else {
         window.open(`https://www.google.com/search?q=${message.replace(/\s/g, "+")}`, "_blank");
         speak("Tôi chưa hiểu yêu cầu của bạn. Tôi đã tìm trên Google giúp bạn!");
     }
+    function convertToNumber(word) {
+        const numbers = {
+            "một": 1, "hai": 2, "ba": 3, "bốn": 4, "năm": 5,
+            "sáu": 6, "bảy": 7, "tám": 8, "chín": 9, "mười": 10
+        };
+        return numbers[word] || parseInt(word);
+    }
 }
- 
-            

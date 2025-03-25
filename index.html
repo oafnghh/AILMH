@@ -10,13 +10,26 @@
   </head>
 <body>
     <div class="container">
-        <h1 class="glitch" data-text="AI POWER">⚡ H-Tech 1.0</h1>
+        <h1 class="glitch" data-text="AI POWER">⚡ H-Tech 2.0</h1>
         <div class="ai-card">
             <p>🤖 Chào mừng đến với H-Tech</p>
             <button class="btn-glow talk">Khám phá</button>
-            <h1 class="content">Click vào btn để tìm kiếm</h1>
+            <h1 class="content">Tìm kiếm khi nhấn vào button</h1>
+            <button class="btn-update" onclick="openPopup()">Xem Cập Nhật</button>
         </div>
+        
     </div>
+    <div id="popup" class="popup">
+      <div class="popup-content">
+          <h2>📢 Bản cập nhật 2.0 có gì</h2>
+          <ul>
+              <li>🔥 Nhận diện thêm các chức năng mở khác</li>
+              <li>🚀 Có thể thực hiện phép tính đơn giản</li>
+              <li>🎨 Cập nhật giao diện mới</li>
+          </ul>
+          <button class="btn-close" onclick="closePopup()">Đóng</button>
+      </div>
+  </div>
     <script src="js.js"></script>
 </body>
 </html> 
