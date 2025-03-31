@@ -1,60 +1,46 @@
-const btn = document.querySelector('.talk')
-const content = document.querySelector('.content')
+const btn = document.querySelector('.talk');
+const content = document.querySelector('.content');
 const audio = new Audio("nhac.mp4");
 const audio2 = new Audio("nhac2.mp4");
-function openPopup() {
-    document.getElementById("popup").style.display = "block";
-}
-function closePopup() {
-    document.getElementById("popup").style.display = "none";
-}
 
-function speak(text){
+function speak(text, lang = "vi-VN") {
     const text_speak = new SpeechSynthesisUtterance(text);
-
     text_speak.rate = 1;
     text_speak.volume = 1;
     text_speak.pitch = 1;
-    text_speak.lang  ="vi-VN"
-
+    text_speak.lang = lang;
     window.speechSynthesis.speak(text_speak);
 }
 
 function wishMe() {
-    var day = new Date().toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" });
-    var hour = new Date(day).getHours();
-
-    if (hour >= 0 && hour < 12) {
-        speak("Chào buổi sáng . Chào mừng đến với H-Tech chủ sở hữu Minh Hoàng");
-    } else if (hour >= 12 && hour < 17) {
-        speak("Chào buổi chiều . Chào mừng đến với H-Tech chủ sở hữu Minh Hoàng");
+    let hour = new Date().getHours();
+    if (hour < 12) {
+        speak("Chào buổi sáng! Good morning!");
+    } else if (hour < 18) {
+        speak("Chào buổi chiều! Good afternoon!");
     } else {
-        speak("Chào buổi tối . Chào mừng đến với H-Tech chủ sở hữu Minh Hoàng");
+        speak("Chào buổi tối! Good evening!");
     }
 }
 
-
-window.addEventListener('load', ()=>{
-    speak("Hoàng đây...");
+window.addEventListener('load', () => {
+    speak("Hoàng đây... I'm here...");
     wishMe();
 });
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-const recognition =  new SpeechRecognition();
+const recognition = new SpeechRecognition();
 recognition.lang = "vi-VN";
-recognition.onresult = (event)=>{
-    const currentIndex = event.resultIndex;
-    const transcript = event.results[currentIndex][0].transcript;
+recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript.toLowerCase();
     content.textContent = transcript;
-    takeCommand(transcript.toLowerCase());
+    takeCommand(transcript);
+};
 
-}
-
-btn.addEventListener('click', ()=>{
-    content.textContent = "Nói...."
+btn.addEventListener('click', () => {
+    content.textContent = "Nói... Speak...";
     recognition.start();
-})
+});
 
 function takeCommand(message) {
     const mathExpression = message.match(/(\d+|\b[một|hai|ba|bốn|năm|sáu|bảy|tám|chín|mười]\b)\s*(cộng|trừ|nhân|chia|\+|\-|\*|\/)\s*(\d+|\b[một|hai|ba|bốn|năm|sáu|bảy|tám|chín|mười]\b)/i);
@@ -73,119 +59,77 @@ function takeCommand(message) {
                 result = num2 !== 0 ? (num1 / num2).toFixed(2) : "không thể chia cho 0"; 
                 break;
         }
-
-        speak(`${num1} ${operator} ${num2} bằng ${result}`);
+        let resultText = result < 0 ? `âm ${Math.abs(result)} (negative ${Math.abs(result)})` : result;
+        speak(`${num1} ${operator} ${num2} bằng ${resultText}`);
         return;
     }
-    if (message.includes('chào') || message.includes('hello') || message.includes('xin chào')) {
-        speak("Xin chào! Tôi có thể giúp gì cho bạn?");
+
+    if (message.includes('chào') || message.includes('hello') || message.includes('hi') || message.includes('xin chào')) {
+        speak("Xin chào! Hello! Tôi có thể giúp gì cho bạn?");
     } 
-    else if (message.includes("mở google")) {
+
+    else if (message.includes("mở google") || message.includes("open google")) {
         window.open("https://google.com", "_blank");
-        speak("Đang mở Google...");
+        speak("Đang mở Google... Opening Google...");
     } 
-    else if (message.includes("mở youtube")) {
+    else if (message.includes("mở youtube") || message.includes("open youtube")) {
         window.open("https://youtube.com", "_blank");
-        speak("Đang mở YouTube...");
+        speak("Đang mở YouTube... Opening YouTube...");
     } 
     else if (message.includes("facebook")) {
         window.open("https://www.facebook.com/SayHi.MinhHoang", "_blank");
-        speak("Đang mở Facebook . Nhớ kết bạn cho LÊ MINH HOÀNG NHÉ ");
+        speak("Đang mở Facebook... Opening Facebook...");
     } 
-    else if (message.includes('là gì') || message.includes('ai là') || message.includes('cái gì')) {
-        window.open(`https://www.google.com/search?q=${message.replace(/\s/g, "+")}`, "_blank");
-        const finalText = "Đây là kết quả tôi tìm thấy trên Google về " + message;
-        speak(finalText);
-    } 
-    else if (message.includes('wikipedia')) {
-        window.open(`https://vi.wikipedia.org/wiki/${message.replace("wikipedia", "").trim()}`, "_blank");
-        const finalText = "Đây là thông tin từ Wikipedia về " + message;
-        speak(finalText);
-    } 
-    else if (message.includes('mấy giờ') || message.includes('thời gian')) {
+
+    else if (message.includes("mấy giờ") || message.includes("thời gian") || message.includes("what time is it")) {
         const time = new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" });
         speak("Bây giờ là " + time);
     } 
-    else if (message.includes('ngày bao nhiêu') || message.includes('hôm nay ngày mấy')) {
+    else if (message.includes("ngày bao nhiêu") || message.includes("hôm nay ngày mấy") || message.includes("what is today's date")) {
         const date = new Date().toLocaleDateString("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric" });
         speak("Hôm nay là " + date);
     } 
-    else if (message.includes('mở máy tính')) {
-        speak("Tính năng này chưa hỗ trợ, bạn có thể mở thủ công nhé!");
+
+    else if (message.includes("thời tiết") || message.includes("weather")) {
+        speak("Bạn muốn xem thời tiết ở đâu? Where do you want to check the weather?");
     }
-    else if (message.includes("Tình yêu") || message.includes("yêu") || message.includes("crush")) {
-        speak("Tôi nghĩ bạn nên chia tay nhé bởi vì Minh Hoàng cũng chưa có người yêu");
-    }
-    else if (message.includes("Minh Hoàng")) {
-        speak("Tình yêu là duyên số, nhưng nếu bạn thích Minh Hoàng thì cứ mạnh dạn lên! Nếu không, hãy nhớ rằng thế giới này vẫn còn rất nhiều Minh Hoàng khác.");
-    }
-    else if (message.includes("mở zalo")) {  
-        window.open("https://chat.zalo.me/", "_blank");  
-        speak("Đang mở Zalo!");  
-    }  
-    
-    else if (message.includes("mở messenger")) {  
-        window.open("https://www.messenger.com/", "_blank");  
-        speak("Đang mở Messenger!");  
+
+    else if (message.includes("phát nhạc") || message.includes("play music")) {
+        playOrPauseMusic(audio);
     } 
-    else if (message.includes("sự nghiệp chướng")) {
+    else if (message.includes("tắt nhạc") || message.includes("stop music")) {
         audio.pause();
-        audio2.play();
-        speak("Đang phát nhạc!");
+        speak("Đã dừng nhạc! Music stopped!");
     }
-    else if (message.includes("tràn bộ nhớ")) {
-        audio2.pause();
-        audio.play();
-        speak("Đang phát nhạc!");
+    else if (message.includes("tra cứu") || message.includes("wikipedia")) {
+        let searchQuery = message.replace("tra cứu", "").replace("wikipedia", "").trim();
+        if (searchQuery) {
+            window.open(`https://vi.wikipedia.org/wiki/${encodeURIComponent(searchQuery)}`, "_blank");
+            speak(`Đang tìm kiếm ${searchQuery} trên Wikipedia...`);
+        } else {
+            speak("Bạn muốn tra cứu gì?");
+        }
     }
-    else if (message.includes("bật nhạc") || message.includes("phát nhạc") || message.includes("chơi nhạc")) {
-        audio.play();
-        audio2.pause();
-        speak("Đang phát nhạc!");
-    } 
-    else if (message.includes("tắt nhạc") || message.includes("dừng nhạc")) {
-        audio.pause();
-        audio2.pause();
-        speak("Đã dừng nhạc!");
-    } 
-    else if (message.includes("mở gmail")) {  
-        window.open("https://mail.google.com/", "_blank");  
-        speak("Đang mở Gmail!");  
-    }  
-    else if (message.includes("kể chuyện") || message.includes("nói một câu chuyện")) {  
-        speak("Có một con gà đi qua đường. Bạn có đoán được tại sao không? Vì nó muốn sang đường đó! Haha!");  
-    }
-    else if (message.includes("thời tiết")) {  
-        window.open("https://www.google.com/search?q=thời+tiết+hôm+nay", "_blank");  
-        speak("Đây là dự báo thời tiết hôm nay.");  
-    }       
     else {
         window.open(`https://www.google.com/search?q=${message.replace(/\s/g, "+")}`, "_blank");
-        speak("Thèn hoàng nó chưa cập nhật cho tôi. Để tôi tìm trên Google giúp bạn!");
-    }
-    function convertToNumber(word) {
-        const numbers = {
-            "một": 1, "hai": 2, "ba": 3, "bốn": 4, "năm": 5,
-            "sáu": 6, "bảy": 7, "tám": 8, "chín": 9, "mười": 10
-        };
-        return numbers[word] || parseInt(word);
+        speak("Tôi chưa hiểu lệnh này. Để tôi tìm trên Google giúp bạn!");
     }
 }
-function searchFunction() {
-    var query = document.getElementById("searchInput").value.trim();
-    if (query !== "") {
-        window.open("https://www.google.com/search?q=" + encodeURIComponent(query), "_blank");
-        speak("Đây là kết quả tìm kiếm cho " + query);
-    } else {
-        speak("Vui lòng nhập nội dung tìm kiếm!");
-    }
+
+function convertToNumber(word) {
+    const numbers = {
+        "một": 1, "hai": 2, "ba": 3, "bốn": 4, "năm": 5,
+        "sáu": 6, "bảy": 7, "tám": 8, "chín": 9, "mười": 10
+    };
+    return numbers[word] || parseInt(word);
 }
+
 function playOrPauseMusic(audio) {
     if (!audio.paused) {
         audio.pause();
-        speak("Đã dừng nhạc!");
+        speak("Đã dừng nhạc! Music stopped!");
     } else {
         audio.play();
-        speak("Đang phát nhạc!");
+        speak("Đang phát nhạc! Playing music!");
     }
 }
