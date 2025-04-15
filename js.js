@@ -11,6 +11,12 @@ function speak(text, lang = "vi-VN") {
     text_speak.lang = lang;
     window.speechSynthesis.speak(text_speak);
 }
+function openPopup() {
+    document.getElementById("popup").style.display = "block";
+}
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
 
 function wishMe() {
     let hour = new Date().getHours();
@@ -123,7 +129,15 @@ function convertToNumber(word) {
     };
     return numbers[word] || parseInt(word);
 }
-
+function searchFunction() {
+    var query = document.getElementById("searchInput").value.trim();
+    if (query !== "") {
+        window.open("https://www.google.com/search?q=" + encodeURIComponent(query), "_blank");
+        speak("Đây là kết quả tìm kiếm cho " + query);
+    } else {
+        speak("Vui lòng nhập nội dung tìm kiếm!");
+    }
+}
 function playOrPauseMusic(audio) {
     if (!audio.paused) {
         audio.pause();

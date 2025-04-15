@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>H-Tech Photobooth</title>
+  <link rel="stylesheet" href="image.css" />
+</head>
+<body>
+    <h1>🎮 H-Tech Photobooth</h1>
+    <div class="container">
+      <div class="left-panel">
+        <video id="video" autoplay></video>
+        <div id="countdown">3</div>
+        <div class="controls">
+          <button id="capture">📸 Chụp ảnh</button>
+          <select id="filter">
+            <option value="none">Không filter</option>
+            <option value="grayscale(100%)">Đen trắng</option>
+            <option value="brightness(1.2) contrast(1.2)">Mịu da</option>
+            <option value="sepia(0.4) hue-rotate(300deg)">Hồng nhẹ</option>
+          </select>
+        </div>
+      </div>
+      <div class="right-panel">
+        <canvas id="finalCanvas" width="1220" height="400"></canvas>
+        <div class="actions">
+          <button id="download">⬇️ Tải về</button>
+          <button id="refresh">🔄 Chụp lại</button>
+        </div>
+      </div>
+    </div>
+
+  <script src="js2.js"></script>
+</body>
+</html>

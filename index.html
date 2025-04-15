@@ -12,7 +12,7 @@
     <button class="btn-update" onclick="openPopup()">📢 Xem Cập Nhật</button>
 
     <div class="container">
-        <h1 class="glitch" data-text="AI POWER">⚡ H-Tech 3.5</h1>
+        <h1 class="glitch" data-text="AI POWER">⚡ H-Tech 4.0</h1>
         
         <div class="ai-card">
             <p>🤖 Chào mừng đến với H-Tech</p>
@@ -28,31 +28,41 @@
                 <button class="btn-search" onclick="searchFunction()">Tìm kiếm</button>
             </div>
         </div>
+        <br>
+        <div class="ai-card">
+            <h2>📷 H-Tech Photobooth</h2>
+            <p>Chụp ảnh, chỉnh filter, thả sticker, chọn khung và tải về dễ dàng</p>
+            <a href="image.html" type="_black" class="btn-glow">Khám phá</a>
+        </div>
     </div>
+    
+
 
     <div id="popup" class="popup">
         <div class="popup-content">
-            <h2>📢 Bản cập nhật 3.0 có gì</h2>
+            <h2>📢 Bản cập nhật 4.0 có gì mới?</h2>
             <ul>
-                <li>🔥 Thêm chức năng tìm kiếm để người dùng nhập</li>
-                <li>🚀 Có thể thực hiện bật nhạc/tắt nhạc theo yêu cầu</li>
-                <li>🎨 Chỉnh sửa giao diện</li>
+                <li>🆕 Thêm Photobooth phong cách Life4Cut</li>
+                <li>📸 Hỗ trợ đếm ngược và tải ảnh về</li>
             </ul>
+
             <label for="toggleSongList" class="toggle-header">🎵 Xem danh sách các bài hát</label>
             <input type="checkbox" id="toggleSongList" class="hidden-checkbox">
             <ul id="songList" class="song-list">
                 <li>🎶 Tràn bộ nhớ - Dương Domic</li>
                 <li>🎶 Sự nghiệp chướng - Pháp</li>
             </ul>
+            
             <label for="toggleHistory" class="toggle-header">📜 Xem các cập nhật trước đó</label>
             <input type="checkbox" id="toggleHistory" class="hidden-checkbox">
             <ul id="updateHistory" class="song-list">
-                <li>🔹 Cập nhật 2.0: Thêm chức năng tính toán đơn giản</li>
-                <li>🔹 Cập nhật 1.0: Tìm kiếm theo giọng nói</li>
+                <li>📦 3.0: Thêm tìm kiếm, bật/tắt nhạc, chỉnh sửa giao diện</li>
+                <li>🔢 2.0: Tính toán đơn giản</li>
+                <li>🎤 1.0: Tìm kiếm bằng giọng nói</li>
             </ul>
             <button class="btn-close" onclick="closePopup()">Đóng</button>
         </div>
-    </div>
+        </div>
 
     <script src="js.js"></script>
 </body>

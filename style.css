@@ -3,7 +3,9 @@
     50% { text-shadow: -2px -2px red, 2px 2px blue; }
     100% { text-shadow: 2px 2px red, -2px -2px blue; }
 }
-
+a{
+    text-decoration: none;
+}
 body {
     color: white;
     font-family: Arial, sans-serif;
@@ -150,3 +152,4 @@ body {
     margin-left: 10px;
     border-radius: 5px;
 }
+
