@@ -147,3 +147,46 @@ function playOrPauseMusic(audio) {
         speak("Đang phát nhạc! Playing music!");
     }
 }
+function toggleChat() {
+    const chatWindow = document.getElementById("chatWindow");
+    chatWindow.style.display = chatWindow.style.display === "none" || chatWindow.style.display === "" ? "block" : "none";
+}
+
+function sendMessage() {
+    const userMessage = document.getElementById("userMessage").value;
+    if (userMessage.trim() === "") return;
+
+    const chatMessages = document.getElementById("chatMessages");
+    const newMessage = document.createElement("div");
+    newMessage.classList.add("user-message");
+    newMessage.textContent = "Bạn: " + userMessage;
+    chatMessages.appendChild(newMessage);
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    setTimeout(() => {
+        const responseMessage = document.createElement("div");
+        responseMessage.classList.add("bot-message");
+
+        if (userMessage.toLowerCase().includes("hello") || userMessage.toLowerCase().includes("hi") || userMessage.toLowerCase().includes("chào")) {
+            responseMessage.textContent = "H-Tech: Chào bạn! Tôi có thể giúp gì cho bạn?";
+        } else if (userMessage.toLowerCase().includes("mấy giờ") || userMessage.toLowerCase().includes("thời gian")) {
+            const time = new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" });
+            responseMessage.textContent = `H-Tech: Bây giờ là ${time}`;
+        } else if (userMessage.toLowerCase().includes("ngày bao nhiêu") || userMessage.toLowerCase().includes("hôm nay ngày mấy")) {
+            const date = new Date().toLocaleDateString("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric" });
+            responseMessage.textContent = `H-Tech: Hôm nay là ${date}`;
+        }else if (userMessage.toLowerCase().includes("tình yêu") || userMessage.toLowerCase().includes("trong tình yêu")) {
+            responseMessage.textContent = "H-Tech: Tình yêu là sự gắn kết đặc biệt giữa hai người, nơi họ hiểu và chia sẻ với nhau.";
+        } else if (userMessage.toLowerCase().includes("yêu em") || userMessage.toLowerCase().includes("em yêu anh")) {
+            responseMessage.textContent = "H-Tech: Tình yêu thật tuyệt vời! Chúc bạn luôn hạnh phúc!";
+        } else {
+            responseMessage.textContent = "H-Tech: Cảm ơn bạn! Tôi đang xử lý...";
+        }
+
+        chatMessages.appendChild(responseMessage);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }, 1000);
+
+    document.getElementById("userMessage").value = ""; 
+}

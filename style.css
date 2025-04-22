@@ -1,155 +1,304 @@
-@keyframes glitch {
-    0% { text-shadow: 2px 2px red, -2px -2px blue; }
-    50% { text-shadow: -2px -2px red, 2px 2px blue; }
-    100% { text-shadow: 2px 2px red, -2px -2px blue; }
-}
-a{
-    text-decoration: none;
-}
-body {
-    color: white;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background: url('https://mir-s3-cdn-cf.behance.net/project_modules/fs/9bc27292880429.5e569ff84e4d0.gif') no-repeat center center fixed;
-    background-size: cover;
+/* ======== Reset & Base ======== */
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.container {
-    text-align: center;
+body {
+  font-family: Arial, sans-serif;
+  color: white;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('https://mir-s3-cdn-cf.behance.net/project_modules/fs/9bc27292880429.5e569ff84e4d0.gif') no-repeat center center fixed;
+  background-size: cover;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ======== Glitch Effect ======== */
+@keyframes glitch {
+  0%, 100% { text-shadow: 2px 2px red, -2px -2px blue; }
+  50%      { text-shadow: -2px -2px red, 2px 2px blue; }
 }
 
 .glitch {
-    font-size: 3rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    animation: glitch 0.8s infinite alternate;
+  font-size: 3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  animation: glitch 0.8s infinite alternate;
+}
+
+/* ======== Container & Card ======== */
+.container {
+  text-align: center;
 }
 
 .ai-card {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
-    display: inline-block;
-    margin-top: 20px;
-    width: 400px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  width: 90%;
+  max-width: 400px;
 }
 
+/* ======== Content ======== */
 .content {
-    margin-top: 15px;
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    font-size: 1.1rem;
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  font-size: 1.1rem;
 }
 
+/* ======== Buttons ======== */
 .btn-glow {
-    background: linear-gradient(45deg, #ff0000, #ff7300, #ff0000);
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    border-radius: 5px;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
-    transition: 0.3s;
+  background: linear-gradient(45deg, #ff0000, #ff7300, #ff0000);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+  transition: 0.3s;
 }
-
 .btn-glow:hover {
-    box-shadow: 0 0 30px rgba(255, 0, 0, 1);
+  box-shadow: 0 0 30px rgba(255, 0, 0, 1);
 }
 
 .btn-update {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: linear-gradient(45deg, #00bfff, #0073ff);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 183, 255, 0.8);
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(45deg, #00bfff, #0073ff);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 183, 255, 0.8);
 }
 
+/* ======== Popup & Song List ======== */
 .popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    text-align: center;
-    z-index: 1000;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  color: black;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  z-index: 1000;
 }
-
-.popup-content {
-    color: black;
-}
-
 .popup ul {
-    list-style-type: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
-
 .popup ul li {
-    padding: 5px;
+  padding: 5px;
+}
+.btn-close {
+  background: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 5px;
 }
 .hidden-checkbox {
-    display: none;
+  display: none;
 }
 .song-list {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 1s ease, opacity 1s ease;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 1s ease, opacity 1s ease;
 }
-
 .hidden-checkbox:checked + .song-list {
-    max-height: 500px; 
-    opacity: 1;
+  max-height: 500px;
+  opacity: 1;
 }
 
-.btn-close {
-    background: red;
-    color: white;
-    border: none;
-    padding: 10px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-top: 10px;
-    border-radius: 5px;
-}
-
+/* ======== Search ======== */
 .search-container {
-    margin-top: 20px;
+  margin-top: 20px;
 }
-
 #searchInput {
-    padding: 10px;
-    width: 250px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
+  padding: 10px;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
 }
-
 .btn-search {
-    background: linear-gradient(45deg, #00ffcc, #0066ff);
-    color: white;
-    border: none;
-    padding: 10px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-left: 10px;
-    border-radius: 5px;
+  background: linear-gradient(45deg, #00ffcc, #0066ff);
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 10px;
+  border-radius: 5px;
 }
 
+/* ======== ChatBot ======== */
+.btn-chat {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 2rem;
+  background: #ff6f61;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 15px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+}
+.chat-window {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+  color: #333;
+}
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.chat-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+.close-chat {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: #333;
+  cursor: pointer;
+}
+.chat-messages {
+  margin-top: 15px;
+  max-height: 250px;
+  overflow-y: auto;
+}
+.chat-input, .send-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+}
+.chat-input {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.send-btn {
+  background: #ff6f61;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.send-btn:hover {
+  background: #e65b4d;
+}
+
+/* ======== Swiper Slider ======== */
+.swiper {
+    margin-top: 500px;
+  max-width: 100%;
+  width: 600px;
+  overflow: visible;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+  position: relative;
+}
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  box-shadow: 0 3px 17px rgba(0, 0, 0, 0.25);
+}
+.swiper-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(to bottom right, #b8b8b88f, #ffffff5e);
+}
+.swiper-slide-active::after {
+  background: none;
+}
+.swiper-slide > div {
+  text-align: center;
+  display: none;
+  opacity: 0;
+}
+.swiper-slide-active div {
+  display: block;
+  opacity: 1;
+}
+.swiper-slide h2 {
+  font-size: 1.2rem;
+  font-family: "Libre Baskerville", serif;
+  position: relative;
+}
+.swiper-slide h2::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 2px;
+  background: linear-gradient(#e66465, #9198e5);
+  width: 0;
+}
+@keyframes line {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+.swiper-slide-active h2::after {
+  animation: line 0.5s linear forwards;
+}
+@media (min-width: 768px) {
+  .swiper-slide h2 {
+    font-size: 2rem;
+  }
+}

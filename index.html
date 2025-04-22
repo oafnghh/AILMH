@@ -1,69 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ H-Tech</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>⚡ H-Tech</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 </head>
 <body>
-    <button class="btn-update" onclick="openPopup()">📢 Xem Cập Nhật</button>
+  <button class="btn-update" onclick="openPopup()">📢 Xem Cập Nhật</button>
 
-    <div class="container">
-        <h1 class="glitch" data-text="AI POWER">⚡ H-Tech 4.0</h1>
-        
-        <div class="ai-card">
-            <p>🤖 Chào mừng đến với H-Tech</p>
-            <button class="btn-glow talk">Khám phá</button>
+  <div class="container">
+    <h1 class="glitch" data-text="AI POWER">⚡ H-Tech 5.0</h1>
 
-            <div class="content">
-                <h2>Nội dung nổi bật</h2>
-                <p>H-Tech mang đến trải nghiệm AI mạnh mẽ, giúp bạn khám phá và tìm kiếm thông tin một cách nhanh chóng.</p>
-            </div>
+    <div class="ai-card">
+      <p>🤖 Chào mừng đến với H-Tech</p>
+      <button class="btn-glow talk">Khám phá</button>
+      <div class="content">
+        <h2>Nội dung nổi bật</h2>
+        <p>H-Tech mang đến trải nghiệm AI mạnh mẽ, giúp bạn khám phá và tìm kiếm thông tin nhanh chóng.</p>
+      </div>
 
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Nhập nội dung tìm kiếm...">
-                <button class="btn-search" onclick="searchFunction()">Tìm kiếm</button>
-            </div>
-        </div>
-        <br>
-        <div class="ai-card">
-            <h2>📷 H-Tech Photobooth</h2>
-            <p>Chụp ảnh, chỉnh filter, thả sticker, chọn khung và tải về dễ dàng</p>
-            <a href="image.html" type="_black" class="btn-glow">Khám phá</a>
-        </div>
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Nhập nội dung tìm kiếm..." />
+        <button class="btn-search" onclick="searchFunction()">Tìm kiếm</button>
+      </div>
     </div>
-    
 
+    <div class="ai-card">
+      <h2>📷 H-Tech Photobooth</h2>
+      <a href="image.html" class="btn-glow" style="margin-top: 50px;" target="_blank">Khám phá</a>
+    </div>
 
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <h2>📢 Bản cập nhật 4.0 có gì mới?</h2>
-            <ul>
-                <li>🆕 Thêm Photobooth phong cách Life4Cut</li>
-                <li>📸 Hỗ trợ đếm ngược và tải ảnh về</li>
-            </ul>
-
-            <label for="toggleSongList" class="toggle-header">🎵 Xem danh sách các bài hát</label>
-            <input type="checkbox" id="toggleSongList" class="hidden-checkbox">
-            <ul id="songList" class="song-list">
-                <li>🎶 Tràn bộ nhớ - Dương Domic</li>
-                <li>🎶 Sự nghiệp chướng - Pháp</li>
-            </ul>
-            
-            <label for="toggleHistory" class="toggle-header">📜 Xem các cập nhật trước đó</label>
-            <input type="checkbox" id="toggleHistory" class="hidden-checkbox">
-            <ul id="updateHistory" class="song-list">
-                <li>📦 3.0: Thêm tìm kiếm, bật/tắt nhạc, chỉnh sửa giao diện</li>
-                <li>🔢 2.0: Tính toán đơn giản</li>
-                <li>🎤 1.0: Tìm kiếm bằng giọng nói</li>
-            </ul>
-            <button class="btn-close" onclick="closePopup()">Đóng</button>
+    <!--<div class="body">
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?auto=format&fit=crop&w=876&q=80" alt="Grilled steak with vegetables" />
+              <div><h2>Grilled steak with vegetables</h2></div>
+            </div>
+            <div class="swiper-slide">
+              <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=481&q=80" alt="Pizza" />
+              <div><h2>Pizza</h2></div>
+            </div>
+            <div class="swiper-slide">
+              <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=410&q=80" alt="Sandwich" />
+              <div><h2>Sandwich with egg</h2></div>
+            </div>
+            <div class="swiper-slide">
+              <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=449&q=80" alt="Toast with blueberry" />
+              <div><h2>Toast with blueberry</h2></div>
+            </div>
+            <div class="swiper-slide">
+              <img src="https://images.unsplash.com/photo-1481070555726-e2fe8357725c?auto=format&fit=crop&w=435&q=80" alt="Chicken burger" />
+              <div><h2>Chicken burger</h2></div>
+            </div>
+          </div>
         </div>
-        </div>
+      </div>
+    </div>-->
+    <!-- Swiper Section -->
+   
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <h2>📢 Bản cập nhật 5.0</h2>
+      <ul>
+        <li>🆕 Thêm nhắn tin trực tuyến</li>
+        <li>🆕 Cải tiến giao diện</li>
+      </ul>
 
-    <script src="js.js"></script>
+      <label for="toggleSongList" class="toggle-header">🎵 Danh sách bài hát</label>
+      <input type="checkbox" id="toggleSongList" class="hidden-checkbox" />
+      <ul id="songList" class="song-list">
+        <li>🎶 Tràn bộ nhớ - Dương Domic</li>
+        <li>🎶 Sự nghiệp chướng - Pháp</li>
+      </ul>
+
+      <label for="toggleHistory" class="toggle-header">📜 Các bản cập nhật trước</label>
+      <input type="checkbox" id="toggleHistory" class="hidden-checkbox" />
+      <ul id="updateHistory" class="song-list">
+        <li>📦 3.0: Thêm tìm kiếm, nhạc, giao diện</li>
+        <li>🔢 2.0: Tính toán đơn giản</li>
+        <li>🎤 1.0: Tìm kiếm bằng giọng nói</li>
+      </ul>
+
+      <button class="btn-close" onclick="closePopup()">Đóng</button>
+    </div>
+  </div>
+
+  <button class="btn-chat" onclick="toggleChat()">💬</button>
+  <div id="chatWindow" class="chat-window">
+    <div class="chat-header">
+      <h2>Chat với H-Tech</h2>
+      <button class="close-chat" onclick="toggleChat()">X</button>
+    </div>
+    <div id="chatMessages" class="chat-messages"></div>
+    <input type="text" id="userMessage" class="chat-input" placeholder="Nhập tin nhắn..." />
+    <button class="send-btn" onclick="sendMessage()">Gửi</button>
+  </div>
+
+  <script src="js.js"></script>
+  <script src='https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js'></script>
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    loop: true,
+    slidesPerView: "1",
+    coverflowEffect: {
+      rotate: 0,
+      stretch: 0,
+      depth: 100,
+      modifier: 4,
+      slideShadows: false
+    },
+    keyboard: {
+      enabled: true
+    },
+    mousewheel: {
+      thresholdDelta: 70
+    },
+    initialSlide: 0,
+    on: {
+      click(event) {
+        swiper.slideTo(this.clickedIndex);
+      }
+    },
+breakpoints: {
+    640: {
+    slidesPerView: 2
+    }
+}
+});
+  </script>
 </body>
 </html>
